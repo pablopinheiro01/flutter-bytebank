@@ -1,10 +1,11 @@
 
 
-import 'package:bytebank/database/app_database.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/contact_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../database/dao/ContactDAO.dart';
 
 class ContactsList extends StatefulWidget {
 
@@ -13,14 +14,17 @@ class ContactsList extends StatefulWidget {
 }
 
 class _ContactsListState extends State<ContactsList> {
+
+  final ContactDAO dao= ContactDAO();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Contacts')),
       body: FutureBuilder<List<Contact>>(
         // initialData: [], //insere um valor inicial
-        future: Future.delayed(Duration(seconds: 3)) //seta um delay na busca para simular uma chamada async
-            .then((value) => findAll()),//busca todos os contatos
+        future: Future.delayed(Duration(seconds: 1)) //seta um delay na busca para simular uma chamada async
+            .then((value) => dao.findAll()),//busca todos os contatos
         builder: (context, snapshot) { //quando tiver a resposta modifica o builder
           switch(snapshot.connectionState){
             case ConnectionState.none: //future ainda nao foi executado
