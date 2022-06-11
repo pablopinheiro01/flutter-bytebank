@@ -1,6 +1,6 @@
 # bytebank
 
-A new Flutter project.
+Projeto de estudos e revisão de conceitos do Flutter, agora consumindo uma lista de contas da base de dados sqlite utilizando sqflite.
 
 ## Getting Started
 
