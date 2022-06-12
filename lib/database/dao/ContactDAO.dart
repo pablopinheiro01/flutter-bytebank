@@ -1,3 +1,4 @@
+
 import 'package:sqflite/sqflite.dart';
 
 import '../../models/contact.dart';
@@ -50,4 +51,16 @@ class ContactDAO{
     }
     return contacts;
   }
+
+  Future<int> update(Contact contact) async{
+    final Database db = await getDatabase(tableSql);
+    final Map<String, dynamic> value = _toMap(contact);
+    return db.update(_tableName, value, where: '$_id = ?', whereArgs: [contact.id]);
+  }
+
+  Future<int> delete(int id) async{
+    final Database db = await getDatabase(tableSql);
+    return db.delete(_tableName, where: '$_id = ?', whereArgs: [id] );
+  }
+
 }

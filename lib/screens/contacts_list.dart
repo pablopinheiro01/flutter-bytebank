@@ -87,6 +87,9 @@ class _ContactItem extends StatelessWidget{
       child: ListTile(
         title: Text(contact.name, style: TextStyle(fontSize: 24),),
         subtitle: Text(contact.accountNumber.toString()),
+        onTap:(){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactForm(),));
+        },
       ),
     );
   }
